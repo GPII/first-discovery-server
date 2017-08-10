@@ -182,7 +182,7 @@ gpii.firstDiscovery.server.preferences.handler.storePrefs = function (that) {
  **********/
 
 fluid.defaults("gpii.firstDiscovery.server.preferences.router", {
-    gradeNames: ["gpii.express.contentAware.router"],
+    gradeNames: ["gpii.express.middleware.contentAware"],
     method: "post",
     handlers: {
         json: {
