@@ -8,6 +8,7 @@ You may obtain a copy of the License at
 https://github.com/fluid-project/first-discovery-server/raw/master/LICENSE.txt
 */
 
+/* eslint-env node */
 "use strict";
 
 var fluid = require("infusion");

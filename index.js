@@ -8,6 +8,7 @@ You may obtain a copy of the License at
 https://raw.githubusercontent.com/GPII/first-discovery-server/master/LICENSE.txt
 */
 
+/* eslint-env node */
 "use strict";
 
 var kettle = require("kettle");

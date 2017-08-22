@@ -8,34 +8,31 @@ You may obtain a copy of the License at
 https://raw.githubusercontent.com/GPII/first-discovery-server/master/LICENSE.txt
 */
 
-// Declare dependencies
-/* global module */
+/* eslint-env node */
+"use strict";
 
 module.exports = function (grunt) {
-    "use strict";
+
 
     // Project configuration.
     grunt.initConfig({
         // Project package file destination.
         pkg: grunt.file.readJSON("package.json"),
-        jshint: {
+        eslint: {
             all: ["**/*.js"],
-            buildScripts: ["Gruntfile.js"],
-            options: {
-                jshintrc: true
-            }
+            buildScripts: ["Gruntfile.js"]
         },
         jsonlint: {
-            all: ["package.json", ".jshintrc", "src/**/*.json", "tests/**/*.json"]
+            all: ["package.json", ".eslintrc", "src/**/*.json", "tests/**/*.json"]
         }
     });
 
     // Load the plugin(s):
-    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("fluid-grunt-eslint");
     grunt.loadNpmTasks("grunt-jsonlint");
 
     // Custom tasks:
 
     grunt.registerTask("default", ["lint"]);
-    grunt.registerTask("lint", "Apply jshint and jsonlint", ["jshint", "jsonlint"]);
+    grunt.registerTask("lint", "Apply eslint and jsonlint", ["eslint", "jsonlint"]);
 };
