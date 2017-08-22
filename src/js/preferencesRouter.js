@@ -161,8 +161,8 @@ gpii.firstDiscovery.server.preferences.handler.createUser = function (that, acce
  * @param that {Object} - the component
  */
 gpii.firstDiscovery.server.preferences.handler.storePrefs = function (that) {
-    var view = that.request.query.view || "";
-    var body = that.request.body || {};
+    var view = that.options.request.query.view || "";
+    var body = that.options.request.body || {};
 
     var accessTokenPromise = that.getAccessToken();
 
