@@ -21,7 +21,6 @@ var querystring = require("querystring");
 kettle.loadTestingSupport();
 
 require("../../src/js/firstDiscoveryServer.js");
-require("gpii-express/tests/js/lib/test-helpers.js");
 require("gpii-express/tests/js/helpers/helpers-tests.js");
 require("gpii-express/tests/js/lib/request.js");
 
