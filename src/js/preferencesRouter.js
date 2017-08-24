@@ -8,6 +8,7 @@ You may obtain a copy of the License at
 https://github.com/fluid-project/first-discovery-server/raw/master/LICENSE.txt
 */
 
+/* eslint-env node */
 "use strict";
 
 var fluid = require("infusion");
@@ -161,8 +162,8 @@ gpii.firstDiscovery.server.preferences.handler.createUser = function (that, acce
  * @param that {Object} - the component
  */
 gpii.firstDiscovery.server.preferences.handler.storePrefs = function (that) {
-    var view = that.request.query.view || "";
-    var body = that.request.body || {};
+    var view = that.options.request.query.view || "";
+    var body = that.options.request.body || {};
 
     var accessTokenPromise = that.getAccessToken();
 
@@ -182,7 +183,7 @@ gpii.firstDiscovery.server.preferences.handler.storePrefs = function (that) {
  **********/
 
 fluid.defaults("gpii.firstDiscovery.server.preferences.router", {
-    gradeNames: ["gpii.express.contentAware.router"],
+    gradeNames: ["gpii.express.middleware.contentAware"],
     method: "post",
     handlers: {
         json: {

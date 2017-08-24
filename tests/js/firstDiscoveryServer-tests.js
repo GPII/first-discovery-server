@@ -8,6 +8,7 @@ You may obtain a copy of the License at
 https://github.com/fluid-project/first-discovery-server/raw/master/LICENSE.txt
 */
 
+/* eslint-env node */
 "use strict";
 
 var fluid = require("infusion");
@@ -20,7 +21,8 @@ var querystring = require("querystring");
 kettle.loadTestingSupport();
 
 require("../../src/js/firstDiscoveryServer.js");
-require("gpii-express/tests/js/lib/test-helpers.js");
+require("gpii-express/tests/js/helpers/helpers-tests.js");
+require("gpii-express/tests/js/lib/request.js");
 
 fluid.defaults("gpii.tests.firstDiscovery.server", {
     gradeNames: ["gpii.firstDiscovery.server"],
@@ -40,9 +42,6 @@ fluid.defaults("gpii.tests.firstDiscovery.server", {
             "client_id": "client_id_first_discovery",
             "client_secret": "client_secret_first_discovery"
         }
-    },
-    events: {
-        onStarted: "{testEnvironment}.events.onStarted"
     }
 });
 
@@ -72,7 +71,7 @@ gpii.tests.firstDiscovery.server.removeQueryParam = function (path) {
 };
 
 gpii.tests.firstDiscovery.server.verifyJSONResponse = function (response, body, expectedResponse, expectedBody) {
-    gpii.express.tests.helpers.isSaneResponse(jqUnit, response, body, 200);
+    gpii.test.express.helpers.isSaneResponse(response, body, 200);
     jqUnit.assertDeepEq("The body should be as expected...", expectedBody, JSON.parse(body));
 };
 
@@ -119,25 +118,21 @@ fluid.defaults("gpii.tests.firstDiscovery.server.request", {
 // For the time being, nock is used to intercept the http requests, providing
 // a simple mock solution for testing the requests to the security server.
 fluid.defaults("gpii.tests.firstDiscovery.server.requestTests", {
-    gradeNames: ["fluid.test.testEnvironment"],
-    events: {
-        constructServer: null,
-        onStarted: null
-    },
+    gradeNames: ["gpii.test.express.testEnvironment"],
     port: 8111,
     components: {
         express: {
-            createOnEvent: "constructServer",
             type: "gpii.tests.firstDiscovery.server"
         },
         testCaseHolder: {
-            type: "gpii.express.tests.caseHolder",
+            type: "gpii.test.express.caseHolder",
             options: {
                 expected: {
                     response: 200,
                     body: gpii.tests.firstDiscovery.server.prefResponse
                 },
                 rawModules: [{
+                    name: "First Discover Server",
                     tests: [{
                         name: "Test ",
                         type: "test",

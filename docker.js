@@ -11,6 +11,7 @@ https://raw.githubusercontent.com/GPII/first-discovery-server/master/LICENSE.txt
 // Launch configuration used by the Dockerfile; uses the oauth2 config as a base
 // and sets other necessary config values by environment variables at launch
 
+/* eslint-env node */
 "use strict";
 
 var kettle = require("kettle");
